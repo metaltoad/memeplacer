@@ -6,7 +6,7 @@ require('fs').readdir('sources', function (err, files) {
       sources.push(files[i]);
     }
   }
-  require('http').createServer(listener).listen(1337);
+  require('http').createServer(listener).listen(8000);
 });
 
 /**
