@@ -37,7 +37,7 @@ function streamImage(response, x, y) {
   var geometry = x + 'x' + y;
   var util = require('util'),
     spawn = require('child_process').spawn,
-    convert = spawn('convert', ['-resize', geometry + '^', '-gravity', 'center', '-extent', geometry, '-gravity', 'center', 'sources/' + findSource(x, y), '-']);
+    convert = spawn('convert', ['-quality', '75%', '-resize', geometry + '^', '-gravity', 'center', '-extent', geometry, '-gravity', 'center', 'sources/' + findSource(x, y), '-']);
 
   response.writeHead(200, {
     'Content-Type': 'image/jpeg',
