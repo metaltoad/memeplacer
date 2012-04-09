@@ -43,7 +43,7 @@ function streamImage(response, x, y) {
     'Content-Type': 'image/jpeg',
     'Cache-Control': 'max-age=99999999',
   });
-  convert.stdout.pipe(response)
+  convert.stdout.pipe(response);
 }
 
 /**
