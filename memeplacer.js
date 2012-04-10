@@ -22,13 +22,18 @@ fs.readdir('sources', function (err, files) {
 function listener(request, response) {
   var uri = url.parse(request.url)['pathname'];
   var parts, x, y;
+  var gray = false;
+  if (uri.match(/^\/g\//)) {
+    uri = uri.replace('/g', '');
+    gray = true;
+  }
   if (
     (parts = uri.match(/^\/(\d+)x(\d+)$/)) &&
     request.method == 'GET' &&
     (x = parseInt(parts[1])) && (y = parseInt(parts[2])) &&
     x >= 1 && x <= 1000 && y >= 1 && y <= 1000) {
 
-    streamImage(response, x, y);
+    streamImage(response, x, y, gray);
   } else if (request.method == 'GET' && !uri.match(/\.\./)) {
     streamFile(response, uri);
   } else {
@@ -39,11 +44,15 @@ function listener(request, response) {
 /**
  * Stream the image.
  */
-function streamImage(response, x, y) {
+function streamImage(response, x, y, gray) {
 
   var geometry = x + 'x' + y;
+  var params = ['-quality', '75%', '-resize', geometry + '^', '-gravity', 'center', '-extent', geometry, '-gravity', 'center', 'sources/' + findSource(x, y), '-'];
+  if (gray) {
+    params.unshift('-colorspace', 'gray');
+  }
   var spawn = child_process.spawn,
-    convert = spawn('convert', ['-quality', '75%', '-resize', geometry + '^', '-gravity', 'center', '-extent', geometry, '-gravity', 'center', 'sources/' + findSource(x, y), '-']);
+    convert = spawn('convert', params);
 
   response.writeHead(200, {
     'Content-Type': 'image/jpeg',
