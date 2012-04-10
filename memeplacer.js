@@ -7,7 +7,7 @@ var http = require('http'),
 
 var sources = [];
 
-fs.readdir('sources', function (err, files) {
+fs.readdir('sources', function(err, files) {
   for (var i = 0; i < files.length; i++) {
     if (files[i].match(/(\d+)x(\d+)\.\d+\.jpg/)) {
       sources.push(files[i]);
@@ -87,7 +87,7 @@ function findSource(x, y) {
 function streamFile(response, uri) {
   uri = (uri == '/') ? '/index.html' : uri;
   var fileStream = fs.createReadStream('files' + uri);
-  fileStream.on('error', function () {notFound(response); });
+  fileStream.on('error', function () { notFound(response); });
   response.writeHead(200, {
     'Content-Type': mimeType(uri),
     'Cache-Control': 'public, max-age=300',
