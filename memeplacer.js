@@ -1,31 +1,38 @@
+var http = require('http'),
+    url = require('url'),
+    path = require('path'),
+    fs = require('fs'),
+    util = require('util'),
+    child_process = require('child_process');
+
 var sources = [];
 
-require('fs').readdir('sources', function (err, files) {
+fs.readdir('sources', function (err, files) {
   for (var i = 0; i < files.length; i++) {
     if (files[i].match(/(\d+)x(\d+)\.\d+\.jpg/)) {
       sources.push(files[i]);
     }
   }
-  require('http').createServer(listener).listen(8000);
+  http.createServer(listener).listen(8000);
 });
 
 /**
  * The main request listener.
  */
 function listener(request, response) {
-  var url = require('url').parse(request.url)['pathname'];
+  var uri = url.parse(request.url)['pathname'];
   var parts, x, y;
   if (
-    (parts = url.match(/^\/(\d+)x(\d+)$/)) &&
+    (parts = uri.match(/^\/(\d+)x(\d+)$/)) &&
     request.method == 'GET' &&
     (x = parseInt(parts[1])) && (y = parseInt(parts[2])) &&
     x >= 1 && x <= 1000 && y >= 1 && y <= 1000) {
 
     streamImage(response, x, y);
-
+  } else if (request.method == 'GET' && !uri.match(/\.\./)) {
+    streamFile(response, uri);
   } else {
-    response.writeHead(404, {'Content-Type': 'text/html'});
-    response.end('Not found');
+    notFound(response);
   }
 }
 
@@ -35,13 +42,12 @@ function listener(request, response) {
 function streamImage(response, x, y) {
 
   var geometry = x + 'x' + y;
-  var util = require('util'),
-    spawn = require('child_process').spawn,
+  var spawn = child_process.spawn,
     convert = spawn('convert', ['-quality', '75%', '-resize', geometry + '^', '-gravity', 'center', '-extent', geometry, '-gravity', 'center', 'sources/' + findSource(x, y), '-']);
 
   response.writeHead(200, {
     'Content-Type': 'image/jpeg',
-    'Cache-Control': 'max-age=99999999',
+    'Cache-Control': 'public, max-age=99999999',
   });
   convert.stdout.pipe(response);
 }
@@ -64,4 +70,46 @@ function findSource(x, y) {
     }
   }
   return results[Math.floor(Math.random() * results.length)];
+}
+
+/**
+ * A file server made of mud and sticks.
+ */
+function streamFile(response, uri) {
+  uri = (uri == '/') ? '/index.html' : uri;
+  var fileStream = fs.createReadStream('files' + uri);
+  fileStream.on('error', function () {notFound(response); });
+  response.writeHead(200, {
+    'Content-Type': mimeType(uri),
+    'Cache-Control': 'public, max-age=300',
+  });
+  fileStream.pipe(response);
+}
+
+/**
+ * Get the MIME type for a file.
+ */
+function mimeType(filename) {
+  var types = {
+    '.html' : 'text/html',
+    '.css'  : 'text/css',
+    '.js'   : 'application/javascript',
+    '.jpg'  : 'image/jpeg',
+    '.jpeg'  : 'image/jpeg',
+    '.png'  : 'image/png',
+  };
+  var i = filename.lastIndexOf('.');
+  var extension = (i < 0) ? '' : filename.substr(i);
+  return types[extension.toLowerCase()] || 'application/octet-stream';
+}
+
+/**
+ * 404.
+ */
+function notFound(response) {
+  response.writeHead(404, {
+    'Content-Type': 'text/html',
+    'Cache-Control': 'public, max-age=300',
+  });
+  response.end('Not Found');
 }
