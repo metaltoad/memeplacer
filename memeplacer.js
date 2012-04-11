@@ -65,13 +65,13 @@ function streamImage(response, x, y, gray) {
  * Find the closest source image
  */
 function findSource(x, y) {
-  var delta = 999999;
+  var delta;
   var targetAspect = x / y;
   var results = [];
   for (var i = 0; i < sources.length; i++) {
     var parts = sources[i].match(/(\d+)x(\d+)\.\d+\.jpg/);
     var sourceAspect = parseInt(parts[1]) / parseInt(parts[2]);
-    if (Math.abs(sourceAspect - targetAspect) < delta) {
+    if (Math.abs(sourceAspect - targetAspect) < delta || !delta) {
       delta = Math.abs(sourceAspect - targetAspect);
       results = [sources[i]];
     } else if (Math.abs(sourceAspect - targetAspect) == delta) {
