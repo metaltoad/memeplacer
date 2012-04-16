@@ -1,5 +1,5 @@
 Start the server with `node memeplacer.js`.
-Your images will be available at e.g. http://127.0.0.1:1337/640x480
+Your images will be available at e.g. http://127.0.0.1:8000/640x480
 
 Fill the sources/ directory with images of various aspects.  A suggested starting range is:
 
