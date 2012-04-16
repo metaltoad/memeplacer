@@ -61,6 +61,20 @@ input:invalid, textarea:invalid { background-color: #f0dddd; }
 
 table { border-collapse: collapse; border-spacing: 0; }
 td { vertical-align: top; }
+.cf:before,
+.cf:after {
+    content:"";
+    display:table;
+}
+
+.cf:after {
+    clear:both;
+}
+
+/* For IE 6/7 (trigger hasLayout) */
+.cf {
+    zoom:1;
+}
 
 
 /* ===== Primary Styles ========================================================
@@ -95,6 +109,10 @@ h1 {
   line-height: 60px;
 }
 
+h3 {
+  color: white;
+}
+
 p {
   font-family: 'Crete Round', serif;
 }
@@ -103,7 +121,7 @@ p {
   width: 400px;
   float: left;
   font-size: 25px;
-  color: #245151;
+  color: #4AA5A5;
   margin-top: 0;
 }
 #main {
@@ -151,4 +169,24 @@ code span {
   margin: 5px 0 5px 5px;
 }
 
+.branding-logo {
+  float: right;
+  margin: 0 10px;
+}
+#metaltoadmedia {
+
+}
+
+#copperfroghosting {
+
+}
+
+footer {
+  clear: both;
+  background: #384241;
+  height: 80px;
+  border-radius: 5px;
+  position: relative;
+  line-height: 80px;
+}
 
