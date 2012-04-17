@@ -30,7 +30,7 @@ function listener(request, response) {
   if (
     (parts = uri.match(/^\/(\d+)x(\d+)$/)) &&
     request.method == 'GET' &&
-    (x = parseInt(parts[1])) && (y = parseInt(parts[2])) &&
+    (x = parseInt(parts[1],10)) && (y = parseInt(parts[2],10)) &&
     x >= 1 && x <= 1000 && y >= 1 && y <= 1000) {
 
     streamImage(response, x, y, gray);
@@ -56,7 +56,7 @@ function streamImage(response, x, y, gray) {
 
   response.writeHead(200, {
     'Content-Type': 'image/jpeg',
-    'Cache-Control': 'public, max-age=99999999',
+    'Cache-Control': 'public, max-age=99999999'
   });
   convert.stdout.pipe(response);
 }
@@ -70,7 +70,7 @@ function findSource(x, y) {
   var results = [];
   for (var i = 0; i < sources.length; i++) {
     var parts = sources[i].match(/(\d+)x(\d+)\.\d+\.jpg/);
-    var sourceAspect = parseInt(parts[1]) / parseInt(parts[2]);
+    var sourceAspect = parseInt(parts[1],10) / parseInt(parts[2],10);
     if (Math.abs(sourceAspect - targetAspect) < delta || !delta) {
       delta = Math.abs(sourceAspect - targetAspect);
       results = [sources[i]];
@@ -90,7 +90,7 @@ function streamFile(response, uri) {
   fileStream.on('error', function () { notFound(response); });
   response.writeHead(200, {
     'Content-Type': mimeType(uri),
-    'Cache-Control': 'public, max-age=300',
+    'Cache-Control': 'public, max-age=300'
   });
   fileStream.pipe(response);
 }
@@ -105,7 +105,7 @@ function mimeType(filename) {
     '.js'   : 'application/javascript',
     '.jpg'  : 'image/jpeg',
     '.jpeg'  : 'image/jpeg',
-    '.png'  : 'image/png',
+    '.png'  : 'image/png'
   };
   var i = filename.lastIndexOf('.');
   var extension = (i < 0) ? '' : filename.substr(i);
@@ -118,7 +118,7 @@ function mimeType(filename) {
 function notFound(response) {
   response.writeHead(404, {
     'Content-Type': 'text/html',
-    'Cache-Control': 'public, max-age=300',
+    'Cache-Control': 'public, max-age=300'
   });
   response.end('Not Found');
 }
