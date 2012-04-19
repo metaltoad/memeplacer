@@ -105,7 +105,8 @@ function mimeType(filename) {
     '.js'   : 'application/javascript',
     '.jpg'  : 'image/jpeg',
     '.jpeg'  : 'image/jpeg',
-    '.png'  : 'image/png'
+    '.png'  : 'image/png',
+    '.ico'  : 'image/x-icon'
   };
   var i = filename.lastIndexOf('.');
   var extension = (i < 0) ? '' : filename.substr(i);
