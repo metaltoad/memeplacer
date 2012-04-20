@@ -24,4 +24,7 @@ namespace :deploy do
   task :restart, :roles => :web do
     run "forever restartall"
   end
+
+  after "deploy",
+    "deploy:cleanup"
 end
