@@ -174,11 +174,14 @@ code span {
   margin: 0 10px;
 }
 #metaltoadmedia {
-
+float:left;
 }
-
+#metaltoadmedia a {
+  color: #999;
+  text-decoration:none;
+}
 #copperfroghosting {
-
+  color: #999;
 }
 
 footer {
