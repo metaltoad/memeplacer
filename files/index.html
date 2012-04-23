@@ -13,8 +13,7 @@
   <link href='//fonts.googleapis.com/css?family=Nosifer' rel='stylesheet' type='text/css'>
   <link href='//fonts.googleapis.com/css?family=Crete+Round' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="style.css?1">
-
-  <script type="text/javascript">var switchTo5x=true;</script>
+  <link rel="shortcut icon" href="/favicon.ico"></link>
   <script type="text/javascript">
 
     var _gaq = _gaq || [];
@@ -27,33 +26,28 @@
       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
     })();
 
-    var loc = new String(window.parent.document.location); 
-    if (loc.indexOf("https://")!= -1) {
-      STprefix = "https://";
-      STtext1 = "ws";
-      STtext2 = "ws";
-    } else {
-      STprefix = "http://";
-      STtext1 = "w";
-      STtext2 = "s";
-    }
-    document.write('<script type="text/javascript" src="');
-    document.write(STprefix + STtext1);
-    document.write('.sharethis.com/button/buttons.js">');
-
-    document.write('<script type="text/javascript" src="');
-    document.write(STprefix + STtext2);
-    document.write('.sharethis.com/loader.js">');
-  </script>
-  <link rel="shortcut icon" href="/favicon.ico"></link>
+    </script>
 </head>
 <body>
+  <div id="fb-root"></div>
+  <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=206616499405733";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));</script>
   <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
   <header>
 
   </header>
   <div id="main" class="cf">
     <h1>placezombies</h1>
+    <div id="social">
+      <div class="fb-like" data-send="true" data-layout="button_count" data-width="150" data-show-faces="false" data-colorscheme="dark" data-font="lucida grande"></div>
+       <a href="https://twitter.com/share" class="twitter-share-button" data-via="metaltoad" data-hashtags="zombies">Tweet</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+    </div>
     <h3>When <a href="http://placekitten.com">kittens</a> won't do.</h3>
     <p id="intro">A quick and simple service for getting pictures of zombies as placeholders in your designs.</p>
     <code><span>Use like this:</span> http://placezombies.com/300x200 <br> <span>Or for Night of the Living Dead B&W:</span> http://placezombies.com/g/300x200 <br><span>max size: 1000x1000</span></code>
@@ -101,9 +95,5 @@
       </div>
     </footer>
   </div>
-<script>
-var options={ "publisher": "ur-e1eb6314-29dd-772-bbf1-e8ca8a50fe6a", "position": "left", "ad": { "visible": false, "openDelay": 5, "closeDelay": 0}, "chicklets": { "items": ["facebook", "twitter", "reddit", "pinterest", "googleplus", "email"]}};
-var st_hover_widget = new sharethis.widgets.hoverbuttons(options);
-</script>
 </body>
 </html>
