@@ -88,9 +88,14 @@ function streamFile(response, uri) {
   uri = (uri == '/') ? '/index.html' : uri;
   var fileStream = fs.createReadStream('files' + uri);
   fileStream.on('error', function () { notFound(response); });
+  var mime = mimeType(uri);
+  var cache = 'public, max-age=99999999';
+  if (mime == 'text/html') {
+    cache = 'public, max-age=300';
+  }
   response.writeHead(200, {
     'Content-Type': mimeType(uri),
-    'Cache-Control': 'public, max-age=300'
+    'Cache-Control': cache
   });
   fileStream.pipe(response);
 }
