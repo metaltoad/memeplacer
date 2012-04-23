@@ -34,10 +34,13 @@
       STprefix = "http://";
       STtext = "";
     }
-    document.write('<script type="text/javascript" src="' + STprefix + 'w' + STtext + '.sharethis.com/button/buttons.js"></script>');
+    document.write('<script type="text/javascript" src="');
+    document.write(STprefix + 'w' + STtext);
+    document.write('.sharethis.com/button/buttons.js">');
   </script>
   <script type="text/javascript">var switchTo5x=true;</script>
   <script type="text/javascript" src="//s.sharethis.com/loader.js"></script>
+  <link rel="shortcut icon" href="/favicon.ico"></link>
 </head>
 <body>
   <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
