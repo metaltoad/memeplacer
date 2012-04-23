@@ -14,6 +14,7 @@
   <link href='//fonts.googleapis.com/css?family=Crete+Round' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="style.css?1">
 
+  <script type="text/javascript">var switchTo5x=true;</script>
   <script type="text/javascript">
 
     var _gaq = _gaq || [];
@@ -29,17 +30,21 @@
     var loc = new String(window.parent.document.location); 
     if (loc.indexOf("https://")!= -1) {
       STprefix = "https://";
-      STtext = "s";
+      STtext1 = "ws";
+      STtext2 = "ws";
     } else {
       STprefix = "http://";
-      STtext = "";
+      STtext1 = "w";
+      STtext2 = "s";
     }
     document.write('<script type="text/javascript" src="');
-    document.write(STprefix + 'w' + STtext);
+    document.write(STprefix + STtext1);
     document.write('.sharethis.com/button/buttons.js">');
+
+    document.write('<script type="text/javascript" src="');
+    document.write(STprefix + STtext2);
+    document.write('.sharethis.com/loader.js">');
   </script>
-  <script type="text/javascript">var switchTo5x=true;</script>
-  <script type="text/javascript" src="//s.sharethis.com/loader.js"></script>
   <link rel="shortcut icon" href="/favicon.ico"></link>
 </head>
 <body>
