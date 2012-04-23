@@ -26,9 +26,17 @@
       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
     })();
 
+    var loc = new String(window.parent.document.location); 
+    if (loc.indexOf("https://")!= -1) {
+      STprefix = "https://";
+      STtext = "s";
+    } else {
+      STprefix = "http://";
+      STtext = "";
+    }
+    document.write('<script type="text/javascript" src="' + STprefix + 'w' + STtext + '.sharethis.com/button/buttons.js"></script>');
   </script>
   <script type="text/javascript">var switchTo5x=true;</script>
-  <script type="text/javascript" src="//w.sharethis.com/button/buttons.js"></script>
   <script type="text/javascript" src="//s.sharethis.com/loader.js"></script>
 </head>
 <body>
