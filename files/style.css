@@ -113,6 +113,15 @@ h3 {
   color: white;
 }
 
+h3 a {
+  color:white;
+}
+h3 a:hover,
+h3 a:active,
+h3 a:visited {
+  color:#DDD;
+}
+
 p {
   font-family: 'Crete Round', serif;
 }
@@ -203,3 +212,14 @@ footer {
   line-height: 80px;
 }
 
+#sthoverbuttons {
+font: 11px Helvetica,Tahoma,Arial;
+z-index: 980000!important;
+cursor: pointer;
+margin-left: -7px;
+position: fixed;
+top: 25%;
+right:0px;
+left:initial;
+width: 50px;
+}
