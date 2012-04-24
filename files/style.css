@@ -214,6 +214,45 @@ footer {
 #social {
   float:right;
 }
-.fb_edge_widget_with_comment {
+/*.fb_edge_widget_with_comment {
   vertical-align: top;
+}*/
+.sharing {
+  margin: .25em 0 1em;
+  width: 215px;
 }
+.sharing .facebook-like {
+  display: inline-block;
+  position: relative;
+  top: -2px;
+  width: 90px;
+  height: 21px;
+  vertical-align: middle;
+}
+.social,
+.social li {
+  margin: 0;
+  padding: 0;
+  float:left;
+  list-style: none;
+}
+.social li {
+  display: inline;
+}
+.social a {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  text-indent: -9999px;
+  background: transparent url("../../images/social/website-24x24.png") no-repeat;
+}
+.social a:hover, .social a:focus {
+  outline: none;
+}
+.social .delicious a { background-image: url("../../images/social/delicious-24x24.png"); }
+.social .digg a      { background-image: url("../../images/social/digg-24x24.png"); }
+.social .email a     { background-image: url("../../images/social/email-24x24.png"); }
+.social .facebook a  { background-image: url("../../images/social/facebook-24x24.png"); }
+.social .twitter a   { background-image: url("../../images/social/twitter-24x24.png"); }
+.social .google_plus a   { background-image: url("../../images/social/google+-24x24.png"); }
+.social .reddit a   { background-image: url("../../images/social/reddit-24x24.png"); }
